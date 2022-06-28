@@ -8,8 +8,24 @@ from icecream import ic
 #   
 #           p = Wahrscheinlichkeit, dass etwas eintritt
 #           X ~ Ber(p) 
+p_1 = 0.7
+x_1 = 0
 
+ic("BERNOULLI")
+ic(
+    # P(X = x)      --> Wahrscheinlichkeit, für genau X
+    stats.bernoulli(p_1).pmf(x_1),
 
+    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
+    stats.bernoulli(p_1).cdf(x_1),
+    1 - stats.bernoulli(p_1).cdf(x_1),
+
+    # Erwartungswert
+    stats.bernoulli(p_1).expect(),
+
+    # Varianz
+    stats.bernoulli(p_1).var(),   
+)
 
 
 # 2 ----- Gemoetrische Verteilung ------
