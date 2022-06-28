@@ -1,8 +1,8 @@
 import numpy as np
 from scipy import stats, special
 from icecream import ic
-n = 20
-k = 20
+n = 10
+k = 5
 
 ic (
     # 0. Permutation (Alle und ohne wiederholung)

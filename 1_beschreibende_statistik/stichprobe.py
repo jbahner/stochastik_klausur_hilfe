@@ -48,11 +48,11 @@ ic(
     # Spannweite
     np.max(a) - np.min(a),
 
-    # Interquatilabstand
     
       
 )
 
+# Quantil
 p = 0.75 # hier quantil ändern
 quantil = len(a) * p
 if quantil.is_integer():
@@ -64,6 +64,8 @@ else:
         a[math.ceil(p * len(a)) - 1],
     )
 
+
+# Interquartilabstand
 x = len(a) * 0.75
 if x.is_integer():
     ic(
@@ -77,3 +79,10 @@ else:
 # plt.hist(a, bins=[0, 10, 20, 30, 40, 50])
 # plt.title("My histogram")
 # plt.show()
+
+# Violinplots / Geigenplos:
+# zeigt Nuancen in der Verteilung, die in Box-Plots nicht wahrnehmbar sind
+# 
+# Boxplot:
+# Zeigt die Außreißer deutlicher. 
+# 
