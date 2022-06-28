@@ -22,13 +22,22 @@ a.sort()
 # wenn n * p = Komma Zahl: selbst rechnen. n*p, dann hoch runden, dann dieses Element
 # x[np]
 
+def mode(array):
+    counts = {}
+    for e in array:
+        if e not in counts:
+            counts[e] = 1
+        counts[e] = counts[e] + 1
+    max_occ = max(counts.values())
+    result = {key:value for (key, value) in counts.items() if value == max_occ}
+    return result
 
 ic(
     a,
 
     np.mean(a), #Mittel
     np.median(a), #Median
-    stats.mode(a), #Modalwert
+    mode(a), # Modalwert
 
     # Vairanz
     np.var(a, ddof=1),
