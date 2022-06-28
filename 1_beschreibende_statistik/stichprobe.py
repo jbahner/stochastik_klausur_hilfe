@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import math
 
 from icecream import ic
-a = [7,4,10,10,9,3,5,6]
+a = [25, 17, 25, 29, 20, 15,11,17,16,16]
 a.sort()
 # Median (Zentralwert)
 # falls Ungerade Zahl   -> x[m+1]
@@ -30,16 +30,6 @@ ic(
     np.median(a), #Median
     stats.mode(a), #Modalwert
 
-    # Quantile
-    # n * p = Natürlich
-    np.quantile(a, 0.25, interpolation="midpoint"),
-    np.quantile(a, 0.5, interpolation="midpoint"),
-    np.quantile(a, 0.75, interpolation="midpoint"),
-
-    # Quantile
-    # n * p = Kommazahl
-    a[math.ceil(0.6 * len(a)) - 1],
-
     # Vairanz
     np.var(a, ddof=1),
 
@@ -50,11 +40,30 @@ ic(
     np.max(a) - np.min(a),
 
     # Interquatilabstand
-    np.quantile(a, 0.75, interpolation="nearest") - np.quantile(a, 0.25, interpolation="nearest"),
-
-
+    
+      
 )
 
+p = 0.75 # hier quantil ändern
+quantil = len(a) * p
+if quantil.is_integer():
+    ic(
+        np.quantile(a, p, interpolation="midpoint"),
+    )
+else:
+    ic(
+        a[math.ceil(p * len(a)) - 1],
+    )
+
+x = len(a) * 0.75
+if x.is_integer():
+    ic(
+        np.quantile(a, 0.75, interpolation="nearest") - np.quantile(a, 0.25, interpolation="nearest"),
+    )
+else:
+    ic(
+        a[math.ceil(0.75 * len(a)) - 1] - a[math.ceil(0.25 * len(a)) - 1],
+)
 # PLOT
 # plt.hist(a, bins=[0, 10, 20, 30, 40, 50])
 # plt.title("My histogram")
