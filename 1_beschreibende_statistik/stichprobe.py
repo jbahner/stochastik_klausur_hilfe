@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import math
 
 from icecream import ic
-a = [8,7,5,10,6,3,9,7]
+a = [1,2,3,4,4,5,5,6,6,6]
 a.sort()
 # Median (Zentralwert)
 # falls Ungerade Zahl   -> x[m+1]
@@ -36,7 +36,7 @@ def mode(array):
 ic(
     a,
 
-    np.mean(a), #Mittel
+    np.mean(a), #Mittel /Erwartungswert
     np.median(a), #Median
     mode(a), # Modalwert
 
@@ -48,13 +48,42 @@ ic(
 
     # Spannweite
     np.max(a) - np.min(a),
-
-    
       
 )
 
-# Quantil
-p = 0.75 # hier quantil ändern
+# Quartil
+p = 0.25
+quartil1 = len(a) * p
+if quartil1.is_integer():
+    ic(
+        np.quantile(a, p, interpolation="midpoint"),
+    )
+else:
+    ic(
+        a[math.ceil(p * len(a)) - 1],
+    )
+p = 0.5 
+quartil2 = len(a) * p
+if quartil2.is_integer():
+    ic(
+        np.quantile(a, p, interpolation="midpoint"),
+    )
+else:
+    ic(
+        a[math.ceil(p * len(a)) - 1],
+    )
+p = 0.75 
+quartil3 = len(a) * p
+if quartil3.is_integer():
+    ic(
+        np.quantile(a, p, interpolation="midpoint"),
+    )
+else:
+    ic(
+        a[math.ceil(p * len(a)) - 1],
+    )
+
+p = 0.625
 quantil = len(a) * p
 if quantil.is_integer():
     ic(
@@ -64,13 +93,11 @@ else:
     ic(
         a[math.ceil(p * len(a)) - 1],
     )
-
-
 # Interquartilabstand
 x = len(a) * 0.75
 if x.is_integer():
     ic(
-        np.quantile(a, 0.75, interpolation="nearest") - np.quantile(a, 0.25, interpolation="nearest"),
+        np.quantile(a, 0.75, interpolation="midpoint") - np.quantile(a, 0.25, interpolation="midpoint"),
     )
 else:
     ic(
