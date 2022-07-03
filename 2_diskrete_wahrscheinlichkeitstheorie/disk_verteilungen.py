@@ -38,9 +38,9 @@ if False:
 #   
 #           p = Wahrscheinlichkeit, dass etwas eintritt
 #           X ~ geom(p)
-if True:
-    p = 0.7
-    x = 5
+if False:
+    p = 0.34
+    x = 2
     ic ("GEOMETRISCH")
     ic (
         f"P(X = {x})",
@@ -71,10 +71,10 @@ if True:
 #           p = Wahrscheinlichkeit, dass Erfolg
 #           X ~ Bin(n, p)
 if False:
-    n = 3
-    p = 0.3
+    n = 34
+    p = 0.34
 
-    x = [0]
+    x = [4, 5]
     ic ("BINOMIAL")
     ic(
         f"P(X = {x})",
@@ -86,6 +86,8 @@ if False:
         1 - stats.binom(n, p).cdf(x),
         f"P(X < {x})",
         stats.binom(n, p).cdf(x) - stats.binom(n, p).pmf(x),
+        f"P(X >= {x}",
+        stats.binom(n, p).pmf(x) + 1 - stats.binom(n, p).cdf(x),
 
         "Erwartungswert bei Stichprobe",
         n * p,
@@ -105,28 +107,28 @@ if False:
 #           N_g = Grundgesamtheit
 #           M = Anzahl an Elementen mit Eigenschaft aus Gesamtheit
 #           n = Anzahl Stichprobe
-#           X ~ (m, M, N)
+#           X ~ (N, M, n)
 if True:
-    N_g = 60
-    M = 10
-    n = 3
+    N = 130
+    M = 20
+    n = 10
 
     x = 0
     ic("HYPERGEOMETRISCH")
     ic (
         f"P(X = {x})",
-        stats.hypergeom(N_g, M, n).pmf(x),
+        stats.hypergeom(N, M, n).pmf(x),
 
         f"P(X <= {x})",
-        stats.hypergeom(N_g, M, n).cdf(x),
+        stats.hypergeom(N, M, n).cdf(x),
         f"P(X > {x})",
-        1 - stats.hypergeom(N_g, M, n).cdf(x),
+        1 - stats.hypergeom(N, M, n).cdf(x),
 
         "E(X)",
-        stats.hypergeom(N_g, M, n).expect(),
+        stats.hypergeom(N, M, n).expect(),
 
         "Var(X)",
-        stats.hypergeom(N_g, M, n).var(),
+        stats.hypergeom(N, M, n).var(),
     )
 
 # 5 ----- Poisson Verteilung -----------
@@ -139,7 +141,7 @@ if True:
 #
 #           TODO: Wie rechnet man Rate aus wenn Exp() gegeben?
 if False:
-    l = 1
+    l = 6
     x = 0
     ic("POISSON")
     ic (

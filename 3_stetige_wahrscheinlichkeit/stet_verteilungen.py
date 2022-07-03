@@ -10,10 +10,10 @@ from icecream import ic
 #           [a; b]
 #           X ~ U(a,b)
 if False:
-    a = 2
-    b = 10
+    a = 50
+    b = 180
 
-    x = 0
+    x = 100
     quantil = 0.1
     ic("GLEICHVERTEILUNG")
     ic(
@@ -24,8 +24,10 @@ if False:
         stats.uniform(a, b-a).cdf(x),
         f"P(X > {x})",
         1 - stats.uniform(a, b-a).cdf(x),
+        f"P(X < {x})",
+        stats.uniform(a, b-a).cdf(x) - stats.uniform(a, b-a).pdf(x),
 
-        f"P-Quantil ${quantil}",
+        f"P-Quantil {quantil}",
         stats.uniform(a, b-a).ppf(quantil),
 
         "E(X)",
@@ -49,9 +51,9 @@ if False:
 #           
 #           X ~ exp(λ)
 if False:
-    l = 1/7
-    x = 2
-    quantil = 0.1
+    l = 1/8
+    x = 5
+    quantil = 0.5
     ic("EXPONENTIALVERTEILT")
     ic(
         f"P(X = {x})",
@@ -61,8 +63,10 @@ if False:
         stats.expon(scale=1/l).cdf(x),
         f"P(X > {x})",
         1 - stats.expon(scale=1/l).cdf(x),
+        F"P(X < {x})",
+        stats.expon(scale=1/l).cdf(x) - stats.expon(scale=1/l).pdf(x),
 
-        f"P-Quantil ${quantil}",
+        f"P-Quantil {quantil}",
         stats.expon(scale=1/l).ppf(quantil),
 
         "E(X)",
@@ -82,11 +86,11 @@ if False:
 #           σ = Standardabweichung
 #           X ~ N(µ, σ)
 if False:
-    erw = 130
-    std = 15
-    quantil = 0.1
+    erw = 100
+    std = 42.426
+    quantil = 0.99
 
-    x= 120
+    x= 84
     ic("NORMALVERTEILT")
     ic(
         f"P(X = {x})",
@@ -96,8 +100,10 @@ if False:
         stats.norm(erw, std).cdf(x),
         f"P(X > {x})",
         1 - stats.norm(erw, std).cdf(x),
+        f"P(X < {x})",
+        stats.norm(erw, std).cdf(x) - stats.norm(erw, std).pdf(x),
 
-        f"P-Quantil ${quantil}",
+        f"P-Quantil {quantil}",
         stats.norm(erw, std).ppf(quantil),
 
         "E(X)",
