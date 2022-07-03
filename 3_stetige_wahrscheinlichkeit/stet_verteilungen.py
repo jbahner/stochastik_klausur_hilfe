@@ -9,28 +9,33 @@ from icecream import ic
 #
 #           [a; b]
 #           X ~ U(a,b)
-a = 2
-b = 10
+if False:
+    a = 50
+    b = 180
 
-x = 0
-ic("GLEICHVERTEILUNG")
-ic(
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.uniform(a, b-a).pdf(x),
+    x = 100
+    quantil = 0.1
+    ic("GLEICHVERTEILUNG")
+    ic(
+        f"P(X = {x})",
+        stats.uniform(a, b-a).pdf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.uniform(a, b-a).cdf(x),
-    1 - stats.uniform(a, b-a).cdf(x),
+        f"P(X <= {x})",
+        stats.uniform(a, b-a).cdf(x),
+        f"P(X > {x})",
+        1 - stats.uniform(a, b-a).cdf(x),
+        f"P(X < {x})",
+        stats.uniform(a, b-a).cdf(x) - stats.uniform(a, b-a).pdf(x),
 
-    # P-Quantil
-    stats.uniform(a, b-a).ppf(0.1),
+        f"P-Quantil {quantil}",
+        stats.uniform(a, b-a).ppf(quantil),
 
-    # Erwartungswert
-    stats.uniform(a, b-a).expect(),
+        "E(X)",
+        stats.uniform(a, b-a).expect(),
 
-    # Varianz
-    stats.uniform(a, b-a).var(),    
-)
+        "Var(X)",
+        stats.uniform(a, b-a).var(),    
+    )
 
 # 2 ----- Exponentialverteilung -----------
 # --------------------------------------
@@ -45,26 +50,31 @@ ic(
 #           
 #           
 #           X ~ exp(λ)
-l = 1/7
-x = 2
-ic("EXPONENTIALVERTEILT")
-ic(
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.expon(scale=1/l).pdf(x),
+if False:
+    l = 1/8
+    x = 5
+    quantil = 0.5
+    ic("EXPONENTIALVERTEILT")
+    ic(
+        f"P(X = {x})",
+        stats.expon(scale=1/l).pdf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.expon(scale=1/l).cdf(x),
-    1 - stats.expon(scale=1/l).cdf(x),
+        f"P(X <= {x})",
+        stats.expon(scale=1/l).cdf(x),
+        f"P(X > {x})",
+        1 - stats.expon(scale=1/l).cdf(x),
+        F"P(X < {x})",
+        stats.expon(scale=1/l).cdf(x) - stats.expon(scale=1/l).pdf(x),
 
-    # P-Quantil
-    stats.expon(scale=1/l).ppf(0.1),
+        f"P-Quantil {quantil}",
+        stats.expon(scale=1/l).ppf(quantil),
 
-    # Erwartungswert
-    stats.expon(scale=1/l).expect(),
+        "E(X)",
+        stats.expon(scale=1/l).expect(),
 
-    # Varianz
-    stats.expon(scale=1/l).var(),    
-)
+        "Var(X)",
+        stats.expon(scale=1/l).var(),    
+    )
 
 # 3 ----- Normalverteilung -----------
 # --------------------------------------
@@ -75,26 +85,31 @@ ic(
 #           µ = Erwartungswert
 #           σ = Standardabweichung
 #           X ~ N(µ, σ)
-erw = 130
-std = 15
+if False:
+    erw = 100
+    std = 42.426
+    quantil = 0.99
 
-x= 120
-ic("NORMALVERTEILT")
-ic(
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.norm(erw, std).pdf(x),
+    x= 84
+    ic("NORMALVERTEILT")
+    ic(
+        f"P(X = {x})",
+        stats.norm(erw, std).pdf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.norm(erw, std).cdf(x),
-    1 - stats.norm(erw, std).cdf(x),
+        f"P(X <= {x})",
+        stats.norm(erw, std).cdf(x),
+        f"P(X > {x})",
+        1 - stats.norm(erw, std).cdf(x),
+        f"P(X < {x})",
+        stats.norm(erw, std).cdf(x) - stats.norm(erw, std).pdf(x),
 
-    # P-Quantil
-    stats.norm(erw, std).ppf(0.1),
+        f"P-Quantil {quantil}",
+        stats.norm(erw, std).ppf(quantil),
 
-    # Erwartungswert
-    stats.norm(erw, std).expect(),
+        "E(X)",
+        stats.norm(erw, std).expect(),
 
-    # Varianz
-    stats.norm(erw, std).var(),    
-)
+        "Var(X)",
+        stats.norm(erw, std).var(),    
+    )
 
