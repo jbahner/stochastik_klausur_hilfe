@@ -8,24 +8,26 @@ from icecream import ic
 #   
 #           p = Wahrscheinlichkeit, dass etwas eintritt
 #           X ~ Ber(p) 
-p_1 = 0.7
-x_1 = 0
 
-ic("BERNOULLI")
-ic(
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.bernoulli(p_1).pmf(x_1),
+if False:
+    p = 0.7
+    x = 0
+    ic("BERNOULLI")
+    ic(
+        f"P(X = {x})",
+        stats.bernoulli(p).pmf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.bernoulli(p_1).cdf(x_1),
-    1 - stats.bernoulli(p_1).cdf(x_1),
+        f"P(X <= {x})",
+        stats.bernoulli(p).cdf(x),
+        f"P(X > {x})",
+        1 - stats.bernoulli(p).cdf(x),
 
-    # Erwartungswert
-    stats.bernoulli(p_1).expect(),
+        "E(X)",
+        stats.bernoulli(p).expect(),
 
-    # Varianz
-    stats.bernoulli(p_1).var(),   
-)
+        "Var(X)",
+        stats.bernoulli(p).var(),   
+    )
 
 
 # 2 ----- Gemoetrische Verteilung ------
@@ -36,23 +38,27 @@ ic(
 #   
 #           p = Wahrscheinlichkeit, dass etwas eintritt
 #           X ~ geom(p)
-p_2 = 0.55
-x_2 = 3
-ic ("GEOMETRISCH")
-ic (
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.geom(p_2).pmf(x_2),
+if False:
+    p = 0.34
+    x = 2
+    ic ("GEOMETRISCH")
+    ic (
+        f"P(X = {x})",
+        stats.geom(p).pmf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.geom(p_2).cdf(x_2),
-    1 - stats.geom(p_2).cdf(x_2),
+        f"P(X <= {x})",
+        stats.geom(p).cdf(x),
+        f"P(X > {x})",
+        1 - stats.geom(p).cdf(x),
+        f"P(X < {x}",
+        stats.geom(p).cdf(x) - stats.geom(p).pmf(x),
 
-    # Erwartungswert
-    stats.geom(p_2).expect(),
+        "E(X)",
+        stats.geom(p).expect(),
 
-    # Varianz
-    stats.geom(p_2).var(),
-)
+        "Var(X)",
+        stats.geom(p).var(),
+    )
 
 
 # 3 ----- Binomialverteilung -----------
@@ -64,28 +70,33 @@ ic (
 #           n = Anzahl an Versuchen
 #           p = Wahrscheinlichkeit, dass Erfolg
 #           X ~ Bin(n, p)
-n_3 = 3
-p_3 = 0.55
+if False:
+    n = 34
+    p = 0.34
 
-x_3 = [0]
-ic ("BINOMIAL")
-ic(
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.binom(n_3, p_3).pmf(x_3),
+    x = [4, 5]
+    ic ("BINOMIAL")
+    ic(
+        f"P(X = {x})",
+        stats.binom(n, p).pmf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.binom(n_3, p_3).cdf(x_3),
-    1 - stats.binom(n_3, p_3).cdf(x_3),
+        f"P(X <= {x})",
+        stats.binom(n, p).cdf(x),
+        f"P(X > {x})",
+        1 - stats.binom(n, p).cdf(x),
+        f"P(X < {x})",
+        stats.binom(n, p).cdf(x) - stats.binom(n, p).pmf(x),
+        f"P(X >= {x}",
+        stats.binom(n, p).pmf(x) + 1 - stats.binom(n, p).cdf(x),
 
+        "Erwartungswert bei Stichprobe",
+        n * p,
+        "E(X)",
+        stats.binom(n, p).expect(),
 
-    # Erwartungswert bei Stichprobe
-    n_3 * p_3,
-    # Erwartungswert
-    stats.binom(n_3, p_3).expect(),
-
-    # Varianz
-    stats.binom(n_3, p_3).var(),
-)
+        "Var(X)",
+        stats.binom(n, p).var(),
+    )
 
 # 4 ----- Hypergeometrische Verteilung -
 # --------------------------------------
@@ -96,27 +107,29 @@ ic(
 #           N_g = Grundgesamtheit
 #           M = Anzahl an Elementen mit Eigenschaft aus Gesamtheit
 #           n = Anzahl Stichprobe
-#           X ~ (m, M, N)
-N_g_4 = 60
-M_4 = 10
-n_4 = 3
+#           X ~ (N, M, n)
+if True:
+    N = 130
+    M = 20
+    n = 10
 
-x_4 = 0
-ic("HYPERGEOMETRISCH")
-ic (
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.hypergeom(N_g_4, M_4, n_4).pmf(x_4),
+    x = 0
+    ic("HYPERGEOMETRISCH")
+    ic (
+        f"P(X = {x})",
+        stats.hypergeom(N, M, n).pmf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.hypergeom(N_g_4, M_4, n_4).cdf(x_4),
-    1 - stats.hypergeom(N_g_4, M_4, n_4).cdf(x_4),
+        f"P(X <= {x})",
+        stats.hypergeom(N, M, n).cdf(x),
+        f"P(X > {x})",
+        1 - stats.hypergeom(N, M, n).cdf(x),
 
-    # Erwartungswert
-    stats.hypergeom(N_g_4, M_4, n_4).expect(),
+        "E(X)",
+        stats.hypergeom(N, M, n).expect(),
 
-    # Varianz
-    stats.hypergeom(N_g_4, M_4, n_4).var(),
-)
+        "Var(X)",
+        stats.hypergeom(N, M, n).var(),
+    )
 
 # 5 ----- Poisson Verteilung -----------
 # --------------------------------------
@@ -127,20 +140,22 @@ ic (
 #           X ~ Po(λ)
 #
 #           TODO: Wie rechnet man Rate aus wenn Exp() gegeben?
-l_5 = 7
-x_5 = 5
-ic("POISSON")
-ic (
-    # P(X = x)      --> Wahrscheinlichkeit, für genau X
-    stats.poisson(l_5).pmf(x_5),
+if False:
+    l = 6
+    x = 0
+    ic("POISSON")
+    ic (
+        f"P(X = {x})",
+        stats.poisson(l).pmf(x),
 
-    # P(X <= x)     --> Wahrscheinlichkeit, für mindestens/höchstens X
-    stats.poisson(l_5).cdf(x_5),
-    1 - stats.poisson(l_5).cdf(x_5),
+        f"P(X <= {x})",
+        stats.poisson(l).cdf(x),
+        f"P(X > {x})",
+        1 - stats.poisson(l).cdf(x),
 
-    # Erwartungswert
-    stats.poisson(l_5).expect(),
+        "E(X)",
+        stats.poisson(l).expect(),
 
-    # Varianz
-    stats.poisson(l_5).var(),
-)
+        "Var(X)",
+        stats.poisson(l).var(),
+    )
