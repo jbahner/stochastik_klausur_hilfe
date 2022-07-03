@@ -85,7 +85,7 @@ if False:
 #           µ = Erwartungswert
 #           σ = Standardabweichung
 #           X ~ N(µ, σ)
-if False:
+if True:
     erw = 100
     std = 42.426
     quantil = 0.99
