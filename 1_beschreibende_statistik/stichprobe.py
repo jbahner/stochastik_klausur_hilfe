@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import math
 
 from icecream import ic
-a = [25, 17, 25, 29, 20, 15,11,17,16,16]
+a = [8,7,5,10,6,3,9,7]
 a.sort()
 # Median (Zentralwert)
 # falls Ungerade Zahl   -> x[m+1]
@@ -27,7 +27,8 @@ def mode(array):
     for e in array:
         if e not in counts:
             counts[e] = 1
-        counts[e] = counts[e] + 1
+        else:
+            counts[e] = counts[e] + 1
     max_occ = max(counts.values())
     result = {key:value for (key, value) in counts.items() if value == max_occ}
     return result
