@@ -51,9 +51,9 @@ if False:
 #           
 #           X ~ exp(λ)
 if False:
-    l = 1/8
-    x = 5
-    quantil = 0.5
+    l = 7
+    x = 2/7
+    quantil = 0.9
     ic("EXPONENTIALVERTEILT")
     ic(
         f"P(X = {x})",
@@ -86,11 +86,11 @@ if False:
 #           σ = Standardabweichung
 #           X ~ N(µ, σ)
 if False:
-    erw = 100
-    std = 42.426
-    quantil = 0.99
+    erw = 13
+    std = 1
+    quantil = 0.965
 
-    x= 84
+    x= 11
     ic("NORMALVERTEILT")
     ic(
         f"P(X = {x})",
@@ -100,8 +100,6 @@ if False:
         stats.norm(erw, std).cdf(x),
         f"P(X > {x})",
         1 - stats.norm(erw, std).cdf(x),
-        f"P(X < {x})",
-        stats.norm(erw, std).cdf(x) - stats.norm(erw, std).pdf(x),
 
         f"P-Quantil {quantil}",
         stats.norm(erw, std).ppf(quantil),
