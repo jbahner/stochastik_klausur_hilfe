@@ -9,7 +9,10 @@ import matplotlib.pyplot as plt
 import math
 
 from icecream import ic
-a = [8,7,5,10,6,3,9,7]
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
+
+a = [3, 2, 10, 7, 0, 3, 5, 0, 6, 1 ]
 a.sort()
 # Median (Zentralwert)
 # falls Ungerade Zahl   -> x[m+1]
@@ -35,18 +38,17 @@ def mode(array):
 
 ic(
     a,
-
-    np.mean(a), #Mittel
-    np.median(a), #Median
-    mode(a), # Modalwert
-
-    # Vairanz
+    "Mittel",
+    np.mean(a),
+    "Median",
+    np.median(a),
+    "Modalwert",
+    mode(a),
+    "Varianz",
     np.var(a, ddof=1),
-
-    # Standardabweichung
+    "Standardabweichung",
     np.std(a, ddof=1),
-
-    # Spannweite
+    "Spannweite",
     np.max(a) - np.min(a),
 
     
@@ -54,26 +56,31 @@ ic(
 )
 
 # Quantil
-p = 0.75 # hier quantil ändern
-quantil = len(a) * p
-if quantil.is_integer():
-    ic(
-        np.quantile(a, p, interpolation="midpoint"),
-    )
-else:
-    ic(
-        a[math.ceil(p * len(a)) - 1],
-    )
+quantile = [0.25, 0.5, 0.75] # hier Quantile ändern
+for p in quantile:
+    quantil = len(a) * p
+    if quantil.is_integer():
+        ic(
+            f"{int(p*100)}%-Quantil",
+            np.quantile(a, p, interpolation="midpoint"),
+        )
+    else:
+        ic(
+            f"{int(p*101)}%-Quantil",
+            a[math.ceil(p * len(a)) - 1],
+        )
 
 
 # Interquartilabstand
 x = len(a) * 0.75
 if x.is_integer():
     ic(
+        "Interquartilabstand",
         np.quantile(a, 0.75, interpolation="nearest") - np.quantile(a, 0.25, interpolation="nearest"),
     )
 else:
     ic(
+        "Interquartilabstand",
         a[math.ceil(0.75 * len(a)) - 1] - a[math.ceil(0.25 * len(a)) - 1],
 )
 # PLOT
