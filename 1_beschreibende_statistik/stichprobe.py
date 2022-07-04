@@ -38,7 +38,7 @@ def mode(array):
 
 ic(
     a,
-    "Mittel",
+    "Mittel/Erwartungswert",
     np.mean(a),
     "Median",
     np.median(a),
@@ -50,8 +50,6 @@ ic(
     np.std(a, ddof=1),
     "Spannweite",
     np.max(a) - np.min(a),
-
-    
       
 )
 
@@ -69,7 +67,6 @@ for p in quantile:
             f"{int(p*101)}%-Quantil",
             a[math.ceil(p * len(a)) - 1],
         )
-
 
 # Interquartilabstand
 x = len(a) * 0.75

@@ -39,8 +39,8 @@ if False:
 #           p = Wahrscheinlichkeit, dass etwas eintritt
 #           X ~ geom(p)
 if False:
-    p = 0.34
-    x = 2
+    p = 0.55
+    x = 4
     ic ("GEOMETRISCH")
     ic (
         f"P(X = {x})",
@@ -52,6 +52,9 @@ if False:
         1 - stats.geom(p).cdf(x),
         f"P(X < {x}",
         stats.geom(p).cdf(x) - stats.geom(p).pmf(x),
+
+        "Quantil",
+        stats.geom(p).ppf(0.9),
 
         "E(X)",
         stats.geom(p).expect(),
@@ -90,6 +93,9 @@ if False:
         f"P(X >= {x}",
         stats.binom(n, p).pmf(x) + 1 - stats.binom(n, p).cdf(x),
 
+        "Quantil",
+        stats.binom(n, p).ppf(0.9),
+
         "Erwartungswert bei Stichprobe",
         n * p,
         "E(X)",
@@ -127,6 +133,9 @@ if False:
         f"P(X > {x})",
         1 - stats.hypergeom(N, M, n).cdf(x),
 
+        "Quantil",
+        stats.hypergeom(N, M, n).ppf(0.9),
+
         "E(X)",
         stats.hypergeom(N, M, n).expect(),
 
@@ -157,6 +166,9 @@ if False:
         1 - stats.poisson(l).cdf(x),
         f"P(X < {x})",
         stats.poisson(l).cdf(x) - stats.poisson(l).pmf(x),
+
+        "Quantil",
+        stats.poisson(l).ppf(0.9),
 
         "E(X)",
         stats.poisson(l).expect(),
