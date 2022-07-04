@@ -71,10 +71,11 @@ if False:
 #           p = Wahrscheinlichkeit, dass Erfolg
 #           X ~ Bin(n, p)
 if False:
-    n = 34
-    p = 0.34
+    n = 11
+    p = 0.55
 
-    x = [4, 5]
+    x = [5, 8]
+    quantil = 0.9
     ic ("BINOMIAL")
     ic(
         f"P(X = {x})",
@@ -96,6 +97,8 @@ if False:
 
         "Var(X)",
         stats.binom(n, p).var(),
+        f"{quantil}-Quantil",
+        stats.binom(n, p).ppf(quantil)
     )
 
 # 4 ----- Hypergeometrische Verteilung -
@@ -108,7 +111,7 @@ if False:
 #           M = Anzahl an Elementen mit Eigenschaft aus Gesamtheit
 #           n = Anzahl Stichprobe
 #           X ~ (N, M, n)
-if True:
+if False:
     N = 130
     M = 20
     n = 10
@@ -141,8 +144,8 @@ if True:
 #
 #           TODO: Wie rechnet man Rate aus wenn Exp() gegeben?
 if False:
-    l = 6
-    x = 0
+    l = 7
+    x = 8
     ic("POISSON")
     ic (
         f"P(X = {x})",
@@ -152,6 +155,8 @@ if False:
         stats.poisson(l).cdf(x),
         f"P(X > {x})",
         1 - stats.poisson(l).cdf(x),
+        f"P(X < {x})",
+        stats.poisson(l).cdf(x) - stats.poisson(l).pmf(x),
 
         "E(X)",
         stats.poisson(l).expect(),
